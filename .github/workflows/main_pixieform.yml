@@ -59,4 +59,4 @@ jobs:
           app-name: 'pixieform'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_37FD189690C04BB299E4CAC283E44E31 }}
-          package: .
+          package: dist
