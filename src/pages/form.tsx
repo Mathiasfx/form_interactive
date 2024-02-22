@@ -15,10 +15,10 @@ type FormValuesStep2 = {
 };
 
 type FormValuesStep3 = {
-  telefono: number;
+  formacion: string;
 };
 type FormValuesStep4 = {
-  rol: string;
+  linkedin: string;
 };
 
 const Step1 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep1> }) => {
@@ -31,10 +31,18 @@ const Step1 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep1> }) => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <TypewriterEffect words={wordsStep1} />
-        <input
-          className="m-4 bg-black text-white text-4xl p-2 rounded border border-gray-300 w-full"
-          {...register("nombreCompleto", { required: true })}
-        />
+        <div className="flex flex-col w-full">
+          <input
+            className="m-4 bg-black text-white text-4xl p-2 rounded border border-gray-300 w-full"
+            {...register("nombreCompleto", { required: true })}
+          />
+          <label className="text-white text-left pl-5">
+            <p>
+              <small>* Campo excluyente</small>
+            </p>
+          </label>
+        </div>
+
         <button className="text-white mt-3" type="submit">
           Siguiente
         </button>
@@ -53,10 +61,18 @@ const Step2 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep2> }) => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <TypewriterEffect words={wordsStep2} />
-        <input
-          className="m-4 bg-black text-white text-4xl p-2 rounded border border-gray-300 w-full"
-          {...register("correoElectronico", { required: true })}
-        />
+        <div className="flex flex-col w-full">
+          <input
+            className="m-4 bg-black text-white text-4xl p-2 rounded border border-gray-300 w-full"
+            {...register("correoElectronico", { required: true })}
+          />
+          <label className="text-white text-left pl-5">
+            <p>
+              <small>* Campo excluyente</small>
+            </p>
+          </label>
+        </div>
+
         <button className="text-white mt-3" type="submit">
           Siguiente
         </button>
@@ -75,10 +91,18 @@ const Step3 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep3> }) => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <TypewriterEffect words={wordsStep3} />
-        <input
-          className="m-4 bg-black text-white text-4xl p-2 rounded border border-gray-300 w-full"
-          {...register("telefono", { required: true })}
-        />
+        <div className="flex flex-col w-full">
+          <input
+            className="m-4 bg-black text-white text-4xl p-2 rounded border border-gray-300 w-full"
+            {...register("formacion", { required: true })}
+          />
+          <label className="text-white text-left pl-5">
+            <p>
+              <small>* Ej: Ingeniería en Sistemas campo excluyente</small>
+            </p>
+          </label>
+        </div>
+
         <button className="text-white mt-3" type="submit">
           Siguiente
         </button>
@@ -97,10 +121,18 @@ const Step4 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep4> }) => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <TypewriterEffect words={wordsStep4} />
-        <input
-          className="m-4 bg-black text-white text-4xl p-2 rounded border border-gray-300 w-full"
-          {...register("rol", { required: true })}
-        />
+        <div className="flex flex-col w-full">
+          <input
+            className="m-4 bg-black text-white text-4xl p-2 rounded border border-gray-300 w-full"
+            {...register("linkedin", { required: false })}
+          />
+          <label className="text-white text-left pl-5">
+            <p>
+              <small>* Opcional</small>
+            </p>
+          </label>
+        </div>
+
         <button className="text-white mt-3" type="submit">
           Enviar
         </button>

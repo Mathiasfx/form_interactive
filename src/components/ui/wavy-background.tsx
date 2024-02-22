@@ -64,22 +64,16 @@ export const WavyBackground = ({
     render();
   };
 
-  const waveColors = colors ?? [
-    "#38bdf8",
-    "#818cf8",
-    "#c084fc",
-    "#e879f9",
-    "#22d3ee",
-  ];
+  const waveColors = colors ?? ["#ffcc00", "#4d4c4c", "#ffcc00", "#4d4c4c"];
   const drawWave = (n: number) => {
     nt += getSpeed();
     for (i = 0; i < n; i++) {
       ctx.beginPath();
-      ctx.lineWidth = waveWidth || 50;
+      ctx.lineWidth = waveWidth || 80;
       ctx.strokeStyle = waveColors[i % waveColors.length];
       for (x = 0; x < w; x += 5) {
-        var y = noise(x / 800, 0.3 * i, nt) * 100;
-        ctx.lineTo(x, y + h * 0.5); // adjust for height, currently at 50% of the container
+        var y = noise(x / 800, 0.4 * i, nt) * 100;
+        ctx.lineTo(x, y + h * 0.7); // adjust for height, currently at 50% of the container
       }
       ctx.stroke();
       ctx.closePath();
@@ -88,10 +82,10 @@ export const WavyBackground = ({
 
   let animationId: number;
   const render = () => {
-    ctx.fillStyle = backgroundFill || "black";
+    ctx.fillStyle = backgroundFill || "#292929";
     ctx.globalAlpha = waveOpacity || 0.5;
     ctx.fillRect(0, 0, w, h);
-    drawWave(5);
+    drawWave(4);
     animationId = requestAnimationFrame(render);
   };
 
@@ -114,7 +108,7 @@ export const WavyBackground = ({
         ref={canvasRef}
         id="canvas"
       ></canvas>
-      <div className={cn("relative z-10", className)} {...props}>
+      <div className={cn("relative z-10 ", className)} {...props}>
         {children}
       </div>
     </div>

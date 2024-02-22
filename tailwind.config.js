@@ -42,6 +42,20 @@ module.exports = {
         ...colors,
         // Aquí puedes agregar colores personalizados si lo deseas
       },
+      fontFamily: {
+        "nunito-regular": ["Nunito-Regular", "sans-serif"],
+        "nunito-bold": ["Nunito-Bold", "sans-serif"],
+        "nunito-semibold": ["Nunito-SemiBold", "sans-serif"],
+        "nunito-black": ["Nunito-Black", "sans-serif"],
+        "nunito-medium": ["Nunito-Black", "sans-serif"],
+        "opensans-regular": ["OpenSans-Regular", "sans-serif"],
+        "opensans-semibold": ["OpenSans-SemiBold", "sans-serif"],
+        "opensans-bold": ["OpenSans-Bold", "sans-serif"],
+        "opensans-medium": ["OpenSans-Medium", "sans-serif"],
+        "opensans-light": ["OpenSans-Light", "sans-serif"],
+        "opensans-extrabold": ["OpenSans-ExtraBold", "sans-serif"],
+        // Agrega más definiciones de fuentes según sea necesario para los otros pesos de fuente
+      },
     },
   },
   plugins: [
