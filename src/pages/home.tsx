@@ -9,12 +9,12 @@ const home = () => {
     <>
       <WavyBackground className="w-full flex flex-1 justify-center">
         <div className=" max-w-screen-md flex flex-col items-center justify-center h-[40rem]  ">
-          <p className="text-gray  sm:text-1xl md:text-xl text-center mb-10 mt-10 text-warmGray-100 font-nunito-bold">
+          <p className="text-gray text-sm  sm:text-1xl md:text-xl text-center mb-10 mt-10 text-warmGray-100 font-nunito-bold">
             ¡El camino al mundo de los Datos comienza acá!
           </p>
           <TypewriterEffect words={wordHome} />
-          <p className="sm:text-2xl md:text-3xl lg:text-3xl text-center mb-4 mt-4 font-semibold text-warmGray-100 font-nunito-bold">
-            Martes 19 marzo, 14:00hs Auditorio UTN
+          <p className="text-1xl sm:text-2xl md:text-3xl lg:text-3xl text-center mb-4 mt-4 font-semibold text-warmGray-100 font-nunito-bold">
+            Martes 19 marzo - 14:00hs Auditorio UTN
           </p>
           <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 space-x-0 md:space-x-4 mt-10">
             <Link to="register">

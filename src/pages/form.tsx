@@ -5,6 +5,8 @@ import { TypewriterEffect } from "../components/ui/typewriter-effect";
 import { wordsStep1, wordsStep2, wordsStep3, wordsStep4 } from "../utils/texts";
 import { DotBackground } from "../components/ui/dotBackground";
 import { useNavigate } from "react-router-dom";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 type FormValuesStep1 = {
   nombreCompleto: string;
@@ -25,26 +27,26 @@ const Step1 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep1> }) => {
   const { register, handleSubmit } = useForm<FormValuesStep1>();
 
   return (
-    <div className="w-full">
+    <div>
       <form
         className="flex flex-col justify-center items-center"
         onSubmit={handleSubmit(onSubmit)}
       >
         <TypewriterEffect words={wordsStep1} />
-        <div className="flex flex-col w-full">
+        <div className="flex flex-col w-full ">
           <input
-            className="m-4 bg-black text-white text-4xl p-2 rounded border border-gray-300 w-full"
+            className="m-4 bg-black text-white text-lg p-2 rounded border border-gray-300 border-opacity-35"
             {...register("nombreCompleto", { required: true })}
           />
           <label className="text-white text-left pl-5">
             <p>
-              <small>* Campo excluyente</small>
+              <small>*Campo excluyente</small>
             </p>
           </label>
         </div>
 
         <button className="text-white mt-3" type="submit">
-          Siguiente
+          <FontAwesomeIcon icon={faArrowRight} />
         </button>
       </form>
     </div>
@@ -52,10 +54,16 @@ const Step1 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep1> }) => {
 };
 
 const Step2 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep2> }) => {
-  const { register, handleSubmit } = useForm<FormValuesStep2>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValuesStep2>();
+
+  //const { register, handleSubmit } = useForm<FormValuesStep2>();
 
   return (
-    <div className="w-full">
+    <div>
       <form
         className="flex flex-col justify-center items-center"
         onSubmit={handleSubmit(onSubmit)}
@@ -64,17 +72,29 @@ const Step2 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep2> }) => {
         <div className="flex flex-col w-full">
           <input
             className="m-4 bg-black text-white text-4xl p-2 rounded border border-gray-300 w-full"
-            {...register("correoElectronico", { required: true })}
+            {...register("correoElectronico", {
+              required: true,
+              pattern: {
+                value: /\S+@\S+\.\S+/,
+                message: "Ingrese un correo electrónico válido",
+              },
+            })}
           />
           <label className="text-white text-left pl-5">
+            {errors.correoElectronico && (
+              <span className="text-red-500">
+                {errors.correoElectronico.message}
+              </span>
+            )}
+
             <p>
-              <small>* Campo excluyente</small>
+              <small>*Campo excluyente</small>
             </p>
           </label>
         </div>
 
         <button className="text-white mt-3" type="submit">
-          Siguiente
+          <FontAwesomeIcon icon={faArrowRight} />
         </button>
       </form>
     </div>
@@ -85,7 +105,7 @@ const Step3 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep3> }) => {
   const { register, handleSubmit } = useForm<FormValuesStep3>();
 
   return (
-    <div className="w-full">
+    <div>
       <form
         className="flex flex-col justify-center items-center"
         onSubmit={handleSubmit(onSubmit)}
@@ -104,7 +124,7 @@ const Step3 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep3> }) => {
         </div>
 
         <button className="text-white mt-3" type="submit">
-          Siguiente
+          <FontAwesomeIcon icon={faArrowRight} />
         </button>
       </form>
     </div>
@@ -112,10 +132,14 @@ const Step3 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep3> }) => {
 };
 
 const Step4 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep4> }) => {
-  const { register, handleSubmit } = useForm<FormValuesStep4>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValuesStep4>();
 
   return (
-    <div className="w-full">
+    <div>
       <form
         className="flex flex-col justify-center items-center"
         onSubmit={handleSubmit(onSubmit)}
@@ -124,9 +148,19 @@ const Step4 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep4> }) => {
         <div className="flex flex-col w-full">
           <input
             className="m-4 bg-black text-white text-4xl p-2 rounded border border-gray-300 w-full"
-            {...register("linkedin", { required: false })}
+            {...register("linkedin", {
+              required: false,
+              pattern: {
+                value: /^(https?:\/\/)?(www\.)?linkedin\.com\/.*$/,
+                message: "Ingrese una URL de LinkedIn válida",
+              },
+            })}
           />
           <label className="text-white text-left pl-5">
+            {errors.linkedin && (
+              <span className="text-red-500">{errors.linkedin.message}</span>
+            )}
+
             <p>
               <small>* Opcional</small>
             </p>
@@ -134,7 +168,7 @@ const Step4 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep4> }) => {
         </div>
 
         <button className="text-white mt-3" type="submit">
-          Enviar
+          <FontAwesomeIcon icon={faArrowRight} />
         </button>
       </form>
     </div>
@@ -169,7 +203,7 @@ const Form = () => {
   return (
     <div className="bg-black min-h-screen flex justify-center items-center">
       <DotBackground>
-        <div className="flex w-1/2 flex-col items-center">
+        <div className="flex w-80 sm:w-full md:w-80 lg:w-1/2 flex-col items-center">
           {isLoading ? (
             <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50 z-50">
               <div className="animate-spin rounded-full h-20 w-20 border-t-2 border-b-2 border-gray-100"></div>
