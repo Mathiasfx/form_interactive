@@ -19,7 +19,7 @@ export const wordHome: Typewriter[] = [
   },
 
   {
-    text: "Dattazon.",
+    text: "Datazon.",
     className: "text-yellow-500 dark:text-yellow-500 font-opensans-extrabold",
   },
 ];
