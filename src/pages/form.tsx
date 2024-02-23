@@ -29,13 +29,13 @@ const Step1 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep1> }) => {
   return (
     <div>
       <form
-        className="flex flex-col justify-center items-center"
+        className="flex flex-col justify-center items-center "
         onSubmit={handleSubmit(onSubmit)}
       >
         <TypewriterEffect words={wordsStep1} />
         <div className="flex flex-col w-full ">
           <input
-            className="m-4 bg-black text-white text-lg p-2 rounded border border-gray-300 border-opacity-35"
+            className="m-4  bg-black text-white text-lg p-2 rounded border border-gray-300 border-opacity-35"
             {...register("nombreCompleto", { required: true })}
           />
           <label className="text-white text-left pl-5">
@@ -44,10 +44,11 @@ const Step1 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep1> }) => {
             </p>
           </label>
         </div>
-
-        <button className="text-white mt-3" type="submit">
-          <FontAwesomeIcon icon={faArrowRight} />
-        </button>
+        <div className="flex w-full justify-end items-end">
+          <button className="text-white mt-3 pr-5 text-right" type="submit">
+            <FontAwesomeIcon icon={faArrowRight} size={"2x"} />
+          </button>
+        </div>
       </form>
     </div>
   );
@@ -93,9 +94,11 @@ const Step2 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep2> }) => {
           </label>
         </div>
 
-        <button className="text-white mt-3" type="submit">
-          <FontAwesomeIcon icon={faArrowRight} />
-        </button>
+        <div className="flex w-full justify-end items-end">
+          <button className="text-white mt-3 pr-5 text-right" type="submit">
+            <FontAwesomeIcon icon={faArrowRight} size={"2x"} />
+          </button>
+        </div>
       </form>
     </div>
   );
@@ -123,9 +126,11 @@ const Step3 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep3> }) => {
           </label>
         </div>
 
-        <button className="text-white mt-3" type="submit">
-          <FontAwesomeIcon icon={faArrowRight} />
-        </button>
+        <div className="flex w-full justify-end items-end">
+          <button className="text-white mt-3 pr-5 text-right" type="submit">
+            <FontAwesomeIcon icon={faArrowRight} size={"2x"} />
+          </button>
+        </div>
       </form>
     </div>
   );
@@ -147,7 +152,7 @@ const Step4 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep4> }) => {
         <TypewriterEffect words={wordsStep4} />
         <div className="flex flex-col w-full">
           <input
-            className="m-4 bg-black text-white text-4xl p-2 rounded border border-gray-300 w-full"
+            className="m-4 bg-black text-white text-4xl p-2 rounded border border-gray-300 w-full "
             {...register("linkedin", {
               required: false,
               pattern: {
@@ -167,9 +172,11 @@ const Step4 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep4> }) => {
           </label>
         </div>
 
-        <button className="text-white mt-3" type="submit">
-          <FontAwesomeIcon icon={faArrowRight} />
-        </button>
+        <div className="flex w-full justify-end items-end">
+          <button className="text-white mt-3 pr-5 text-right" type="submit">
+            <FontAwesomeIcon icon={faArrowRight} size={"2x"} />
+          </button>
+        </div>
       </form>
     </div>
   );
