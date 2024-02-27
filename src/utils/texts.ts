@@ -19,7 +19,7 @@ export const wordHome: Typewriter[] = [
   },
 
   {
-    text: "Datazon.",
+    text: "Datazón!",
     className: "text-yellow-500 dark:text-yellow-500 font-opensans-extrabold",
   },
 ];
@@ -31,12 +31,6 @@ export const wordsStep1: Typewriter[] = [
   { text: "tu" },
   { text: "nombre", className: "text-yellow-500" },
   { text: "completo?" },
-  { text: "Lo" },
-  { text: "necesitamos" },
-  { text: "para" },
-  { text: "inscribirte" },
-  { text: "al" },
-  { text: "evento" },
 ];
 //Nos compartís tu mail, por favor.
 export const wordsStep2: Typewriter[] = [
@@ -50,8 +44,18 @@ export const wordsStep2: Typewriter[] = [
   { text: "por" },
   { text: "favor." },
 ];
-//¿Nos podrías compartir cual es tu formación académica o tu carrera profesional?
+//Sos estudiante de la utn
 export const wordsStep3: Typewriter[] = [
+  { text: "¿Sos" },
+  { text: "estudiante" },
+  { text: "o" },
+  { text: "egresado" },
+  { text: "de" },
+  { text: "la" },
+  { text: "UTN", className: "text-yellow-500" },
+];
+//¿Nos podrías compartir cual es tu formación académica o tu carrera profesional?
+export const wordsStep4: Typewriter[] = [
   { text: "¿Nos" },
   { text: "podrías" },
   { text: "compartir" },
@@ -65,19 +69,10 @@ export const wordsStep3: Typewriter[] = [
   { text: "carrera", className: "text-yellow-500" },
   { text: "profesional?", className: "text-yellow-500" },
 ];
+
 //¿Tenes LinkedIn? Cuando tengamos vacantes abiertas, podemos contactarnos con vos según tu perfil
-export const wordsStep4: Typewriter[] = [
+export const wordsStep5: Typewriter[] = [
   { text: "¿Tenes" },
   { text: "LinkedIn", className: "text-yellow-500" },
   { text: "?" },
-  { text: "Cuando" },
-  { text: "tengamos" },
-  { text: "vacantes" },
-  { text: "abiertas," },
-  { text: "podemos" },
-  { text: "contactarnos" },
-  { text: "con" },
-  { text: "según" },
-  { text: "tu" },
-  { text: "perfil" },
 ];
