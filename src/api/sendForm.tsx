@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-explicit-any  */
+//POST
 import axios from "axios";
 
 const url = "https://pixieapi.azurewebsites.net/api/users";
