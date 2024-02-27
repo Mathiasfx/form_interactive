@@ -13,6 +13,9 @@ import { DotBackground } from "../components/ui/dotBackground";
 import { useNavigate } from "react-router-dom";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import sendForm from "../api/sendForm";
 import Logo from "../assets/logopi.svg";
 import "../css/toggle.css";
 
@@ -247,14 +250,28 @@ const Form = () => {
     }
   };
 
-  const handleSubmit: SubmitHandler<Record<string, any>> = (data) => {
-    console.log("Datos del formulario:", data);
+  const handleSubmit: SubmitHandler<Record<string, any>> = async (data) => {
     setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
+    const DataForm = {
+      email: data.email,
+      fullname: data.nombre,
+      linkedin: data.linkedin ? data.linkedin : "",
+      position: data.posicion,
+      student: data.utn,
+    };
+
+    try {
+      await sendForm(DataForm);
       navigate("/thanks");
-    }, 3000);
-    // Aquí iría la lógica para enviar los datos al servidor
+    } catch (err) {
+      console.error("Error al enviar los datos:", err);
+      toast.error(
+        "Hubo un error al enviar los datos. Por favor, inténtalo de nuevo." +
+          err
+      );
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -274,6 +291,17 @@ const Form = () => {
               {currentStep === 5 && <Step5 onSubmit={handleStepSubmit} />}
             </>
           )}
+          <ToastContainer
+            position="bottom-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
         </div>
       </DotBackground>
 
