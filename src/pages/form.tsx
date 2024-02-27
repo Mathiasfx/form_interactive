@@ -173,7 +173,7 @@ const Step4 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep4> }) => {
           />
           <label className="text-white text-left pl-5">
             <p className="text-sm  font-nunito-regular">
-              *Ej: Ingeniería en Sistemas
+              *Ej: Ing. en Sistemas ó rol en tu empresa
             </p>
           </label>
         </div>

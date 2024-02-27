@@ -25,7 +25,7 @@ export const wordHome: Typewriter[] = [
 ];
 //¿Hola! ¿Como es tu nombre completo? Lo necesitamos para inscribirte al evento
 export const wordsStep1: Typewriter[] = [
-  { text: "¿Hola!" },
+  { text: "Hola!" },
   { text: "¿Como" },
   { text: "es" },
   { text: "tu" },
@@ -52,7 +52,7 @@ export const wordsStep3: Typewriter[] = [
   { text: "egresado" },
   { text: "de" },
   { text: "la" },
-  { text: "UTN", className: "text-yellow-500" },
+  { text: "UTN?", className: "text-yellow-500" },
 ];
 //¿Nos podrías compartir cual es tu formación académica o tu carrera profesional?
 export const wordsStep4: Typewriter[] = [
@@ -72,7 +72,9 @@ export const wordsStep4: Typewriter[] = [
 
 //¿Tenes LinkedIn? Cuando tengamos vacantes abiertas, podemos contactarnos con vos según tu perfil
 export const wordsStep5: Typewriter[] = [
-  { text: "¿Tenes" },
+  { text: "¿Nos" },
+  { text: "compartis" },
+  { text: "tu" },
   { text: "LinkedIn", className: "text-yellow-500" },
   { text: "?" },
 ];
