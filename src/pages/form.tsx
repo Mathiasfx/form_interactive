@@ -264,11 +264,8 @@ const Form = () => {
       await sendForm(DataForm);
       navigate("/thanks");
     } catch (err) {
-      console.error("Error al enviar los datos:", err);
-      toast.error(
-        "Hubo un error al enviar los datos. Por favor, inténtalo de nuevo." +
-          err
-      );
+      console.error(err.response.data.error);
+      toast.error(err.response.data.error.toString());
     } finally {
       setIsLoading(false);
     }
