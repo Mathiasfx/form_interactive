@@ -116,13 +116,6 @@ const Step2 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep2> }) => {
 
 const Step3 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep3> }) => {
   const { register, handleSubmit } = useForm<FormValuesStep3>();
-  const [isChecked, setIsChecked] = useState(false);
-
-  const handleToggleChange = (e: {
-    target: { checked: boolean | ((prevState: boolean) => boolean) };
-  }) => {
-    setIsChecked(e.target.checked);
-  };
 
   return (
     <div>
@@ -131,20 +124,37 @@ const Step3 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep3> }) => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <TypewriterEffect words={wordsStep3} />
-        <div className="flex w-full items-center justify-center">
-          <label className="toggle justify-center">
-            <input
-              type="checkbox"
-              className="toggle-checkbox"
-              {...register("utn")}
-              onChange={handleToggleChange}
-            />
-            <span className="toggle-slider round"></span>
-          </label>
-          <span className="m-4 flex items-center text-white text-2xl p-2">
-            {isChecked ? "SI" : "NO"}
-          </span>
+        <div className="flex  w-full items-center justify-center">
+          <select
+            className="m-4 w-full bg-black text-white text-2xl p-4 rounded border border-gray-300"
+            {...register("utn")}
+          >
+            <option className="p-4" value="estudiante">
+              Estudiante
+            </option>
+            <option className="p-4" value="egresado">
+              Egresado
+            </option>
+          </select>
+          <div className="pointer-events-none flex items-center px-2 text-white">
+            <svg
+              className="fill-current h-8 w-8"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10 12l-5-5 1.5-1.5L10 9l3.5-3.5L15 7l-5 5z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </div>
         </div>
+        <label className="text-white text-left pl-5">
+          <p className="text-sm  font-nunito-regular">
+            * Si no sos de la UTN, no es necesario que contestes
+          </p>
+        </label>
 
         <div className="flex w-full justify-end items-end">
           <button className="text-white mt-3 pr-5 text-right" type="submit">
@@ -302,7 +312,7 @@ const Form = () => {
         </div>
       </DotBackground>
 
-      <div className="absolute bottom-8 left-0 right-0 flex justify-center items-center">
+      <div className="absolute bottom-20 left-0 right-0 flex justify-center items-center">
         <img src={Logo} alt="Logo" className="w-60 " />
       </div>
     </div>

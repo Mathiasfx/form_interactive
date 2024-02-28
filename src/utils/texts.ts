@@ -44,15 +44,14 @@ export const wordsStep2: Typewriter[] = [
   { text: "por" },
   { text: "favor." },
 ];
-//Sos estudiante de la utn
+//Si estudiaste en la UTN, sos:
 export const wordsStep3: Typewriter[] = [
-  { text: "¿Sos" },
-  { text: "estudiante" },
-  { text: "o" },
-  { text: "egresado" },
-  { text: "de" },
+  { text: "Si" },
+  { text: "estudiaste" },
+  { text: "en" },
   { text: "la" },
-  { text: "UTN?", className: "text-yellow-500" },
+  { text: "UTN,", className: "text-yellow-500" },
+  { text: "sos:" },
 ];
 //¿Nos podrías compartir cual es tu formación académica o tu carrera profesional?
 export const wordsStep4: Typewriter[] = [

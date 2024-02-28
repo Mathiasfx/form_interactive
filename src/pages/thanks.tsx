@@ -12,7 +12,7 @@ const Thanks = () => {
           </span>
           !
         </p>
-        <div className="absolute bottom-10 left-0 right-0 flex justify-center items-center h-20">
+        <div className="absolute bottom-20 left-0 right-0 flex justify-center items-center h-20">
           <img src={Logo} alt="Logo" className="w-60" />
         </div>
       </DotBackground>
