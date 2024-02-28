@@ -28,7 +28,7 @@ type FormValuesStep2 = {
 };
 
 type FormValuesStep3 = {
-  utn: boolean;
+  utn: string;
 };
 
 type FormValuesStep4 = {
@@ -128,7 +128,11 @@ const Step3 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep3> }) => {
           <select
             className="m-4 w-full bg-black text-white text-2xl p-4 rounded border border-gray-300"
             {...register("utn")}
+            defaultValue=""
           >
+            <option value="" disabled hidden>
+              Seleccione
+            </option>
             <option className="p-4" value="estudiante">
               Estudiante
             </option>
@@ -267,7 +271,7 @@ const Form = () => {
       fullname: data.nombre,
       linkedin: data.linkedin ? data.linkedin : "",
       position: data.posicion,
-      student: data.utn,
+      student: data.utn ? data.utn : "No corresponde",
     };
 
     try {
