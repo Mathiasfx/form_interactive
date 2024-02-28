@@ -25,7 +25,7 @@ const home = () => {
           </div>
         </div>
         <div className="absolute bottom-10 left-0 right-0 flex justify-center items-center h-20">
-          <img src={Logo} alt="Logo" className="w-60" />
+          <img src={Logo} alt="Logo" className="w-60 h-20" />
         </div>
       </WavyBackground>
     </>
