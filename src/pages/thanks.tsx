@@ -1,10 +1,22 @@
 import { DotBackground } from "../components/ui/dotBackground";
 import Logo from "../assets/logopi.svg";
+import { useState, useEffect } from "react";
+
 const Thanks = () => {
+  const [textColor, setTextColor] = useState("text-white");
+
+  useEffect(() => {
+    const isDarkTheme =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+    setTextColor(isDarkTheme ? "text-white" : "text-black");
+    console.log(isDarkTheme);
+  }, []);
   return (
     <div className="bg-black min-h-screen flex justify-center items-center flex-col relative ">
       <DotBackground>
-        <p className="text-4xl sm:text-7xl font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8 text-center">
+        <p className="text-4xl dark:text-white text-warmGray-200 sm:text-5xl font-bold relative z-20  py-8 text-center">
           Gracias por sumarte, te esperamos en{" "}
           <span className="text-yellow-500 dark:text-yellow-500 font-opensans-extrabold">
             Datazón

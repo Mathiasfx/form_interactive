@@ -40,7 +40,8 @@ module.exports = {
       },
       colors: {
         ...colors,
-        // Aquí puedes agregar colores personalizados si lo deseas
+        darkText: "#ffffff",
+        lightText: "#000000",
       },
       fontFamily: {
         "nunito-regular": ["Nunito-Regular", "sans-serif"],
