@@ -1,18 +1,7 @@
 import { DotBackground } from "../components/ui/dotBackground";
 import Logo from "../assets/logopi.svg";
-import { useState, useEffect } from "react";
 
 const Thanks = () => {
-  const [textColor, setTextColor] = useState("text-white");
-
-  useEffect(() => {
-    const isDarkTheme =
-      window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-    setTextColor(isDarkTheme ? "text-white" : "text-black");
-    console.log(isDarkTheme);
-  }, []);
   return (
     <div className="bg-black min-h-screen flex justify-center items-center flex-col relative ">
       <DotBackground>
