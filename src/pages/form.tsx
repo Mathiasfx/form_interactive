@@ -263,7 +263,7 @@ const Form = () => {
     try {
       await sendForm(DataForm);
       navigate("/thanks");
-    } catch (err) {
+    } catch (err: any) {
       console.error(err.response.data.error);
       toast.error(err.response.data.error.toString());
     } finally {
