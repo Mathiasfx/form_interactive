@@ -38,7 +38,7 @@ export const wordsStep2: Typewriter[] = [
   { text: "compartís" },
   { text: "tu" },
   {
-    text: "mail,",
+    text: "email,",
     className: "text-yellow-500",
   },
   { text: "por" },
