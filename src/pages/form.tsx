@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { TypewriterEffect } from "../components/ui/typewriter-effect";
 import {
@@ -76,8 +76,6 @@ const Step2 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep2> }) => {
     handleSubmit,
     formState: { errors },
   } = useForm<FormValuesStep2>();
-
-  //const { register, handleSubmit } = useForm<FormValuesStep2>();
 
   return (
     <div>
@@ -255,21 +253,41 @@ const Form = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const navigate = useNavigate();
 
+  const [localEmail, setLocalEmail] = useState<string>("");
+  const localStorageKey = "userEmail";
+
+  useEffect(() => {
+    const storedEmail = localStorage.getItem(localStorageKey);
+    if (storedEmail) {
+      setLocalEmail(storedEmail);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(localStorageKey, formData.email);
+  }, [formData.email]);
+
   const handleStepSubmit = (data: Record<string, any>) => {
     setFormData({ ...formData, ...data });
+
     if (currentStep < 5) {
       setCurrentStep(currentStep + 1);
     } else {
-      handleSubmit(formData);
+      setLocalEmail(formData.email);
+      handleSubmit(formData, data.linkedin);
     }
   };
 
-  const handleSubmit: SubmitHandler<Record<string, any>> = async (data) => {
+  const handleSubmit: SubmitHandler<Record<string, any>> = async (
+    data,
+    linkedin
+  ) => {
     setIsLoading(true);
+
     const DataForm = {
       email: data.email,
       fullname: data.nombre,
-      linkedin: data.linkedin ? data.linkedin : "",
+      linkedin: linkedin,
       position: data.posicion,
       student: data.utn ? data.utn : "No corresponde",
     };
