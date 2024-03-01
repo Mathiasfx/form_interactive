@@ -275,6 +275,7 @@ const Form = () => {
     } else {
       setLocalEmail(formData.email);
       handleSubmit(formData, data.linkedin);
+      console.log(localEmail);
     }
   };
 

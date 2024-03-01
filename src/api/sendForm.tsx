@@ -5,6 +5,7 @@ import axios from "axios";
 const url = "https://pixieapi.azurewebsites.net/api/users";
 
 const sendForm = async (data: any) => {
+  console.log(data);
   try {
     const response = await axios.post(url, data);
 
