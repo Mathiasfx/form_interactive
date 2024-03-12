@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import acreditForm from "../api/acreditForm";
-import Pixie from "../assets/pixie.png";
+import Pixie from "../assets/mate_3.gif";
 
 type FormValues = {
   email: string;
