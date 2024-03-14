@@ -68,7 +68,13 @@ const Acredit = () => {
               <div className="flex flex-col w-full ">
                 <input
                   className="m-4  bg-black text-white text-lg p-2 rounded border border-gray-300 border-opacity-35"
-                  {...register("email", { required: true })}
+                  {...register("email", {
+                    required: true,
+                    pattern: {
+                      value: /\S+@\S+\.\S+/,
+                      message: "Ingrese un correo electrónico válido",
+                    },
+                  })}
                   defaultValue={localEmail ? localEmail : ""}
                   placeholder="ejemplo@gmail.com"
                 />
