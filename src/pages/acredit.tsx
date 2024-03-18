@@ -71,7 +71,7 @@ const Acredit = () => {
                   {...register("email", {
                     required: true,
                     pattern: {
-                      value: /\S+@\S+\.\S+/,
+                      value: /^\w+@[a-zA-Z_]+\.[a-zA-Z]{2,3}$/,
                       message: "Ingrese un correo electrónico válido",
                     },
                   })}

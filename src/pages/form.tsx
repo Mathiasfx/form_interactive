@@ -90,7 +90,7 @@ const Step2 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep2> }) => {
             {...register("email", {
               required: true,
               pattern: {
-                value: /\S+@\S+\.\S+/,
+                value: /^\w+@[a-zA-Z_]+\.[a-zA-Z]{2,3}$/,
                 message: "Ingrese un correo electrónico válido",
               },
             })}
@@ -286,7 +286,7 @@ const Form = () => {
     setIsLoading(true);
 
     const DataForm = {
-      email: data.email,
+      email: data.email.toLowerCase(),
       fullname: data.nombre,
       linkedin: linkedin,
       position: data.posicion,
