@@ -52,7 +52,11 @@ const Step1 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep1> }) => {
         <div className="flex flex-col w-full ">
           <input
             className="m-4  bg-black text-white text-lg p-2 rounded border border-gray-300 border-opacity-35"
-            {...register("nombre", { required: true })}
+            {...register("nombre", {
+              required: true,
+              minLength: 3,
+              maxLength: 50,
+            })}
           />
           <label className="text-white text-left pl-5">
             <p className="text-sm  font-nunito-regular">
@@ -90,7 +94,9 @@ const Step2 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep2> }) => {
             {...register("email", {
               required: true,
               pattern: {
-                value: /^\w+@[a-zA-Z_]+\.[a-zA-Z]{2,3}$/,
+                value:
+                  /^\w+(\.\w+)*@[a-zA-Z_]+\.[a-zA-Z]{2,3}(\.[a-zA-Z]{2,3})?$/,
+                // value: /^\w+@[a-zA-Z_]+\.[a-zA-Z]{2,3}$/,
                 message: "Ingrese un correo electrónico válido",
               },
             })}

@@ -27,6 +27,12 @@ const home = () => {
         <div className="absolute bottom-20 left-0 right-0 flex justify-center items-center h-20">
           <img src={Logo} alt="Logo" className="w-60 h-20" />
         </div>
+        <p
+          style={{ color: "gray", fontSize: "11px" }}
+          className="absolute bottom-12"
+        >
+          <small>Version : 1.1.4</small>
+        </p>
       </WavyBackground>
     </>
   );
