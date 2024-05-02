@@ -2,7 +2,7 @@
 //POST
 import axios from "axios";
 
-const url = "https://pixieapi.azurewebsites.net/api/users";
+const url = "";
 
 const sendForm = async (data: any) => {
   console.log(data);

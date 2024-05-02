@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios";
-const url = "https://pixieapi.azurewebsites.net/api/users/accredited";
+const url = "";
 
 const acreditForm = async (data: any) => {
   try {
