@@ -4,6 +4,7 @@ import Form from "./pages/form";
 import Thanks from "./pages/thanks";
 import Acredit from "./pages/acredit";
 import Welcome from "./pages/welcome";
+import RegisAndAcredit from "./pages/regisandacredit";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <Route path="/register" element={<Form />} />
         <Route path="/thanks" element={<Thanks />} />
         <Route path="/acredits" element={<Acredit />} />
+        <Route path="/registandacredit" element={<RegisAndAcredit />} />
         <Route path="/welcome" element={<Welcome />} />
       </Routes>
     </Router>

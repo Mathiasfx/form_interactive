@@ -16,7 +16,7 @@ export interface FormDatazon  {
   export interface FormRegisterAndAcredit{
     name:string,
     email:string,
-    career:string,
+    university:string,
   }  
 
   

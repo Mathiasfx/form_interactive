@@ -11,7 +11,6 @@ const Welcome = () => {
     if (storedName !== null) {
       setNameStored(storedName);
     }
-    console.log(storedName);
   }, []);
   return (
     <div className="bg-black min-h-screen flex justify-center items-center flex-col relative ">

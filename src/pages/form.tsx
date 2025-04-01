@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -432,6 +433,7 @@ const Form = () => {
     const storedEmail = localStorage.getItem(localStorageKey);
     if (storedEmail) {
       setLocalEmail(storedEmail);
+      console.log(localEmail);
     }
   }, []);
 
@@ -448,13 +450,13 @@ const Form = () => {
       const finalData = { ...formData, ...data };
       setLocalEmail(finalData.email);
       handleSubmit(finalData);
-      console.log(localEmail);
+      //console.log(localEmail);
     }
   };
 
   const handleSubmit: SubmitHandler<Record<string, any>> = async (data) => {
     setIsLoading(true);
-    console.log("submit data", data);
+
     const DataForm: FormDatazon = {
       name: data.name,
       email: data.email.toLowerCase(),
