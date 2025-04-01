@@ -10,7 +10,7 @@ import acreditForm from "../api/acreditForm";
 import Pixie from "../assets/mate_3.gif";
 
 type FormValues = {
-  email: string;
+  user_email: string;
 };
 
 const Acredit = () => {
@@ -65,10 +65,10 @@ const Acredit = () => {
               className="flex flex-col justify-center items-center w-80 mt-2"
               onSubmit={handleSubmit(onSubmit)}
             >
-              <div className="flex flex-col w-full ">
+              <div className="flex flex-col w-full relative z-20">
                 <input
                   className="m-4  bg-black text-white text-lg p-2 rounded border border-gray-300 border-opacity-35"
-                  {...register("email", {
+                  {...register("user_email", {
                     required: true,
                     pattern: {
                       value:
@@ -81,18 +81,22 @@ const Acredit = () => {
                   placeholder="ejemplo@gmail.com"
                 />
                 <label className="text-white text-left pl-5">
-                  {errors.email && (
-                    <span className="text-red-500">{errors.email.message}</span>
+                  {errors.user_email && (
+                    <span className="text-red-500">
+                      {errors.user_email.message}
+                    </span>
                   )}
                   <p className="text-sm  font-nunito-regular">
                     *Ingresa el mail con el que te registraste
                   </p>
                 </label>
               </div>
-              <div className="flex w-full justify-end items-end">
+              <div className="flex w-full justify-end items-end relative z-20">
                 <button
                   className="text-white mt-3 pr-5 text-right"
                   type="submit"
+                  title="Submit"
+                  aria-label="Submit"
                 >
                   <FontAwesomeIcon icon={faArrowRight} size={"2x"} />
                 </button>

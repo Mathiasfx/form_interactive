@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { DotBackground } from "../components/ui/dotBackground";
 import Logo from "../assets/logopi.svg";
+import logoDatazon from "../assets/datazonlogo.svg";
+import Mundo from "../assets/mundo.svg";
 
 const Welcome = () => {
   const [nameStored, setNameStored] = useState<string>("");
@@ -14,11 +16,15 @@ const Welcome = () => {
   return (
     <div className="bg-black min-h-screen flex justify-center items-center flex-col relative ">
       <DotBackground>
-        <p className="text-4xl dark:text-white text-warmGray-200 sm:text-5xl font-bold relative z-20  py-8 text-center">
+        <img src={Mundo} alt="Mundo" className="w-55 absolute top-40" />
+        <p className="text-4xl dark:text-white text-stone-200 sm:text-5xl font-bold relative z-20  py-8 text-center">
           Bienvenido {nameStored} a{" "}
-          <span className="text-yellow-500 dark:text-yellow-500 font-opensans-extrabold">
-            Datazón
-          </span>
+          <img
+            src={logoDatazon}
+            alt="datazon"
+            className="inline-block align-middle z-10"
+            width={200}
+          />
           !
         </p>
         <div className="absolute bottom-20 left-0 right-0 flex justify-center items-center h-20">

@@ -1,11 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios";
-const url = "https://pixieapi.azurewebsites.net/api/users/accredited";
+import { FormAcredit } from "../models/forms.model";
+const url = import.meta.env.VITE_API_URL || "https://localhost";
 
-const acreditForm = async (data: any) => {
+const acreditForm = async (data: FormAcredit) => {
+  const { user_email } = data;
   try {
-    const response = await axios.patch(url, data);
-
+    const response = await axios.post(
+      `${url}/api/acredited?user_email=${encodeURIComponent(user_email)}`,
+      data || {}
+    );
     return response.data;
   } catch (error) {
     console.error("Error al enviar los datos:", error);

@@ -10,4 +10,7 @@ export default defineConfig({
       "@": path.resolve(__dirname, "utils"),
     },
   },
+  build: {
+    sourcemap: true, // Habilita los sourcemaps en el build de producción
+  },
 });

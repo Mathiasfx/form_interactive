@@ -8,6 +8,8 @@ import {
   wordsStep3,
   wordsStep4,
   wordsStep5,
+  wordsStep6,
+  wordsStep7,
 } from "../utils/texts";
 import { DotBackground } from "../components/ui/dotBackground";
 import { useNavigate } from "react-router-dom";
@@ -18,9 +20,11 @@ import "react-toastify/dist/ReactToastify.css";
 import sendForm from "../api/sendForm";
 import Logo from "../assets/logopi.svg";
 import "../css/toggle.css";
+import Datazon from "../assets/datazonlogo.svg";
+import { FormDatazon } from "../models/forms.model";
 
 type FormValuesStep1 = {
-  nombre: string;
+  name: string;
 };
 
 type FormValuesStep2 = {
@@ -28,22 +32,34 @@ type FormValuesStep2 = {
 };
 
 type FormValuesStep3 = {
-  utn: string;
+  university: string;
 };
 
 type FormValuesStep4 = {
-  posicion: string;
+  career: string;
 };
 
 type FormValuesStep5 = {
-  linkedin: string;
+  meetus: string;
+};
+
+type FormValuesStep6 = {
+  transport: number;
+};
+
+type FormValuesStep7 = {
+  kilometers: number;
 };
 
 const Step1 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep1> }) => {
-  const { register, handleSubmit } = useForm<FormValuesStep1>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValuesStep1>();
 
   return (
-    <div>
+    <div className="relative">
       <form
         className="flex flex-col justify-center items-center "
         onSubmit={handleSubmit(onSubmit)}
@@ -52,10 +68,14 @@ const Step1 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep1> }) => {
         <div className="flex flex-col w-full ">
           <input
             className="m-4  bg-black text-white text-lg p-2 rounded border border-gray-300 border-opacity-35"
-            {...register("nombre", {
+            {...register("name", {
               required: true,
               minLength: 3,
               maxLength: 50,
+              pattern: {
+                value: /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/,
+                message: "Solo se permiten letras y espacios",
+              },
             })}
           />
           <label className="text-white text-left pl-5">
@@ -65,11 +85,20 @@ const Step1 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep1> }) => {
           </label>
         </div>
         <div className="flex w-full justify-end items-end">
-          <button className="text-white mt-3 pr-5 text-right" type="submit">
+          <button
+            className="text-white mt-3 pr-5 text-right"
+            type="submit"
+            title="Next"
+          >
             <FontAwesomeIcon icon={faArrowRight} size={"2x"} />
           </button>
         </div>
       </form>
+      <label className="text-white text-left pl-5">
+        {errors.name && (
+          <span className="text-red-500">{errors.name.message}</span>
+        )}
+      </label>
     </div>
   );
 };
@@ -82,7 +111,7 @@ const Step2 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep2> }) => {
   } = useForm<FormValuesStep2>();
 
   return (
-    <div>
+    <div className="relative">
       <form
         className="flex flex-col justify-center items-center"
         onSubmit={handleSubmit(onSubmit)}
@@ -101,6 +130,7 @@ const Step2 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep2> }) => {
               },
             })}
           />
+
           <label className="text-white text-left pl-5">
             {errors.email && (
               <span className="text-red-500">{errors.email.message}</span>
@@ -109,7 +139,11 @@ const Step2 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep2> }) => {
         </div>
 
         <div className="flex w-full justify-end items-end">
-          <button className="text-white mt-3 pr-5 text-right" type="submit">
+          <button
+            className="text-white mt-3 pr-5 text-right"
+            type="submit"
+            title="Next"
+          >
             <FontAwesomeIcon icon={faArrowRight} size={"2x"} />
           </button>
         </div>
@@ -118,11 +152,46 @@ const Step2 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep2> }) => {
   );
 };
 
-const Step3 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep3> }) => {
+const Step3 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep4> }) => {
+  const { register, handleSubmit } = useForm<FormValuesStep4>();
+
+  return (
+    <div className="relative">
+      <form
+        className="flex flex-col justify-center items-center"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <TypewriterEffect words={wordsStep7} />
+        <div className="flex flex-col w-full">
+          <input
+            className="m-4 bg-black text-white text-4xl p-2 rounded border border-gray-300 w-full"
+            {...register("career", { required: true })}
+          />
+          <label className="text-white text-left pl-5">
+            <p className="text-sm  font-nunito-regular">
+              *Ej: Ing. en Sistemas ó rol en tu empresa
+            </p>
+          </label>
+        </div>
+        <div className="flex w-full justify-end items-end">
+          <button
+            className="text-white mt-3 pr-5 text-right"
+            type="submit"
+            title="Next"
+          >
+            <FontAwesomeIcon icon={faArrowRight} size={"2x"} />
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+const Step4 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep3> }) => {
   const { register, handleSubmit } = useForm<FormValuesStep3>();
 
   return (
-    <div>
+    <div className="relative">
       <form
         className="flex flex-col justify-center items-center"
         onSubmit={handleSubmit(onSubmit)}
@@ -131,17 +200,17 @@ const Step3 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep3> }) => {
         <div className="flex  w-full items-center justify-center">
           <select
             className="m-4 w-full bg-black text-white text-2xl p-4 rounded border border-gray-300"
-            {...register("utn")}
+            {...register("university", { required: true })}
             defaultValue=""
           >
             <option value="" disabled hidden>
               Seleccione
             </option>
-            <option className="p-4" value="estudiante">
-              Estudiante
+            <option className="p-4" value="utn">
+              UTN
             </option>
-            <option className="p-4" value="egresado">
-              Egresado
+            <option className="p-4" value="otro">
+              Otro
             </option>
           </select>
           <div className="pointer-events-none flex items-center px-2 text-white">
@@ -158,46 +227,13 @@ const Step3 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep3> }) => {
             </svg>
           </div>
         </div>
-        <label className="text-white text-left pl-5">
-          <p className="text-sm  font-nunito-regular">
-            * Si no sos de la UTN, no es necesario que contestes
-          </p>
-        </label>
 
         <div className="flex w-full justify-end items-end">
-          <button className="text-white mt-3 pr-5 text-right" type="submit">
-            <FontAwesomeIcon icon={faArrowRight} size={"2x"} />
-          </button>
-        </div>
-      </form>
-    </div>
-  );
-};
-
-const Step4 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep4> }) => {
-  const { register, handleSubmit } = useForm<FormValuesStep4>();
-
-  return (
-    <div>
-      <form
-        className="flex flex-col justify-center items-center"
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <TypewriterEffect words={wordsStep4} />
-        <div className="flex flex-col w-full">
-          <input
-            className="m-4 bg-black text-white text-4xl p-2 rounded border border-gray-300 w-full"
-            {...register("posicion", { required: true })}
-          />
-          <label className="text-white text-left pl-5">
-            <p className="text-sm  font-nunito-regular">
-              *Ej: Ing. en Sistemas ó rol en tu empresa
-            </p>
-          </label>
-        </div>
-
-        <div className="flex w-full justify-end items-end">
-          <button className="text-white mt-3 pr-5 text-right" type="submit">
+          <button
+            className="text-white mt-3 pr-5 text-right"
+            type="submit"
+            title="Next"
+          >
             <FontAwesomeIcon icon={faArrowRight} size={"2x"} />
           </button>
         </div>
@@ -207,44 +243,174 @@ const Step4 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep4> }) => {
 };
 
 const Step5 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep5> }) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormValuesStep5>();
+  const { register, handleSubmit } = useForm<FormValuesStep5>();
 
   return (
-    <div>
+    <div className="relative">
+      <form
+        className="flex flex-col justify-center items-center"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <TypewriterEffect words={wordsStep4} />
+        <div className="flex  w-full items-center justify-center">
+          <select
+            className="m-4 w-full bg-black text-white text-2xl p-4 rounded border border-gray-300"
+            {...register("meetus", { required: true })}
+            defaultValue=""
+          >
+            <option value="" disabled hidden>
+              Seleccione
+            </option>
+            <option className="p-4" value="redes">
+              En redes sociales
+            </option>
+            <option className="p-4" value="facultad">
+              En la Facultad
+            </option>
+            <option className="p-4" value="amigo">
+              Me invitó un amigo/a
+            </option>
+            <option className="p-4" value="linkedin">
+              Linkedin
+            </option>
+            <option className="p-4" value="recomendacion">
+              Recomendación
+            </option>
+            <option className="p-4" value="otro">
+              Otro
+            </option>
+          </select>
+          <div className="pointer-events-none flex items-center px-2 text-white">
+            <svg
+              className="fill-current h-8 w-8"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10 12l-5-5 1.5-1.5L10 9l3.5-3.5L15 7l-5 5z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <div className="flex w-full justify-end items-end">
+          <button
+            className="text-white mt-3 pr-5 text-right"
+            type="submit"
+            title="Next"
+          >
+            <FontAwesomeIcon icon={faArrowRight} size={"2x"} />
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+const Step6 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep6> }) => {
+  const { register, handleSubmit } = useForm<FormValuesStep6>();
+
+  return (
+    <div className="relative">
       <form
         className="flex flex-col justify-center items-center"
         onSubmit={handleSubmit(onSubmit)}
       >
         <TypewriterEffect words={wordsStep5} />
-        <div className="flex flex-col w-full">
+        <div className="flex  w-full items-center justify-center">
+          <select
+            className="m-4 w-full bg-black text-white text-2xl p-4 rounded border border-gray-300"
+            {...register("transport", { required: true })}
+            defaultValue=""
+          >
+            <option value="" disabled hidden>
+              Seleccione
+            </option>
+            <option className="p-4" value="pie">
+              🚶 A pie
+            </option>
+            <option className="p-4" value="bicicleta">
+              🚴 Bicicleta
+            </option>
+            <option className="p-4" value="scooter">
+              🛴 Scooter
+            </option>
+            <option className="p-4" value="transporte_publico">
+              🚌 Transporte público
+            </option>
+            <option className="p-4" value="auto_particular">
+              🚗 Auto particular
+            </option>
+            <option className="p-4" value="auto_compartido">
+              🚙 Auto compartido
+            </option>
+            <option className="p-4" value="taxi_transporte_app">
+              🚕 Taxi o transporte por app
+            </option>
+            <option className="p-4" value="avion">
+              ✈️ Avión
+            </option>
+          </select>
+          <div className="pointer-events-none flex items-center px-2 text-white">
+            <svg
+              className="fill-current h-8 w-8"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10 12l-5-5 1.5-1.5L10 9l3.5-3.5L15 7l-5 5z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <div className="flex w-full justify-end items-end">
+          <button
+            className="text-white mt-3 pr-5 text-right"
+            type="submit"
+            title="Next"
+          >
+            <FontAwesomeIcon icon={faArrowRight} size={"2x"} />
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+const Step7 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep7> }) => {
+  const { register, handleSubmit } = useForm<FormValuesStep7>();
+
+  return (
+    <div className="relative">
+      <form
+        className="flex flex-col justify-center items-center"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <TypewriterEffect words={wordsStep6} />
+        <div className="flex flex-col  w-full items-center justify-center">
           <input
-            className="m-4 bg-black text-white text-4xl p-2 rounded border border-gray-300 w-full "
-            {...register("linkedin", {
-              required: false,
-              pattern: {
-                value: /^(https?:\/\/)?(www\.)?linkedin\.com\/.*$/,
-                message: "Ingrese una URL de LinkedIn válida",
-              },
-            })}
+            type="number"
+            className="m-4 bg-black text-white text-4xl p-2 rounded border border-gray-300 w-full"
+            {...register("kilometers", { required: true })}
           />
           <label className="text-white text-left pl-5">
-            {errors.linkedin && (
-              <span className="text-red-500">{errors.linkedin.message}</span>
-            )}
-
             <p className="text-sm  font-nunito-regular">
-              *Cuando tengamos vacantes abiertas, podemos contactarnos según tu
-              perfil (Opcional)
+              *Ej: 10km, 20km, 30km
             </p>
           </label>
         </div>
 
         <div className="flex w-full justify-end items-end">
-          <button className="text-white mt-3 pr-5 text-right" type="submit">
+          <button
+            className="text-white mt-3 pr-5 text-right"
+            type="submit"
+            title="Next"
+          >
             <FontAwesomeIcon icon={faArrowRight} size={"2x"} />
           </button>
         </div>
@@ -276,27 +442,27 @@ const Form = () => {
   const handleStepSubmit = (data: Record<string, any>) => {
     setFormData({ ...formData, ...data });
 
-    if (currentStep < 5) {
+    if (currentStep < 7) {
       setCurrentStep(currentStep + 1);
     } else {
-      setLocalEmail(formData.email);
-      handleSubmit(formData, data.linkedin);
+      const finalData = { ...formData, ...data };
+      setLocalEmail(finalData.email);
+      handleSubmit(finalData);
       console.log(localEmail);
     }
   };
 
-  const handleSubmit: SubmitHandler<Record<string, any>> = async (
-    data,
-    linkedin
-  ) => {
+  const handleSubmit: SubmitHandler<Record<string, any>> = async (data) => {
     setIsLoading(true);
-
-    const DataForm = {
+    console.log("submit data", data);
+    const DataForm: FormDatazon = {
+      name: data.name,
       email: data.email.toLowerCase(),
-      fullname: data.nombre,
-      linkedin: linkedin,
-      position: data.posicion,
-      student: data.utn ? data.utn : "No corresponde",
+      university: data.university,
+      career: data.career,
+      meetus: data.meetus,
+      transport: data.transport,
+      kilometers: parseInt(data.kilometers) || 0,
     };
 
     try {
@@ -312,6 +478,12 @@ const Form = () => {
 
   return (
     <div className="bg-black min-h-screen flex flex-col justify-between items-center relative">
+      <img
+        src={Datazon}
+        alt="logo"
+        width={250}
+        className="absolute z-10 top-20"
+      />
       <DotBackground>
         <div className="flex w-80 sm:w-full md:w-80 lg:w-1/2 flex-col items-center">
           {isLoading ? (
@@ -325,6 +497,8 @@ const Form = () => {
               {currentStep === 3 && <Step3 onSubmit={handleStepSubmit} />}
               {currentStep === 4 && <Step4 onSubmit={handleStepSubmit} />}
               {currentStep === 5 && <Step5 onSubmit={handleStepSubmit} />}
+              {currentStep === 6 && <Step6 onSubmit={handleStepSubmit} />}
+              {currentStep === 7 && <Step7 onSubmit={handleStepSubmit} />}
             </>
           )}
           <ToastContainer
