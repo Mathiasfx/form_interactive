@@ -70,19 +70,33 @@ const Step1 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep1> }) => {
           <input
             className="m-4  bg-black text-white text-lg p-2 rounded border border-gray-300 border-opacity-35"
             {...register("name", {
-              required: true,
-              minLength: 3,
-              maxLength: 50,
+              required: "El nombre no puede estar vacío",
+              minLength: {
+                value: 1,
+                message: "El nombre debe tener al menos 1 carácter",
+              },
+              maxLength: {
+                value: 50,
+                message: "El nombre no puede tener más de 50 caracteres",
+              },
               pattern: {
-                value: /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/,
+                value: /^[A-Za-zÁÉÍÓÚáéíóúÑñ]+(?:\s[A-Za-zÁÉÍÓÚáéíóúÑñ]+)*\s*$/,
                 message: "Solo se permiten letras y espacios",
               },
+              validate: (value) =>
+                value.trim().length > 0 || "El nombre no puede estar vacío",
             })}
           />
+
           <label className="text-white text-left pl-5">
-            <p className="text-sm  font-nunito-regular">
+            <p className="text-sm font-nunito-regular">
               *Lo necesitamos para inscribirte al evento
             </p>
+          </label>
+          <label className="text-white text-left pl-5">
+            {errors.name && (
+              <span className="text-red-500">{errors.name.message}</span>
+            )}
           </label>
         </div>
         <div className="flex w-full justify-end items-end">
@@ -95,11 +109,6 @@ const Step1 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep1> }) => {
           </button>
         </div>
       </form>
-      <label className="text-white text-left pl-5">
-        {errors.name && (
-          <span className="text-red-500">{errors.name.message}</span>
-        )}
-      </label>
     </div>
   );
 };
@@ -154,7 +163,11 @@ const Step2 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep2> }) => {
 };
 
 const Step3 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep4> }) => {
-  const { register, handleSubmit } = useForm<FormValuesStep4>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValuesStep4>();
 
   return (
     <div className="relative">
@@ -166,12 +179,25 @@ const Step3 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep4> }) => {
         <div className="flex flex-col w-full">
           <input
             className="m-4 bg-black text-white text-4xl p-2 rounded border border-gray-300 w-full"
-            {...register("career", { required: true })}
+            {...register("career", {
+              required: true,
+              validate: (value) =>
+                value.trim().length > 0 || "El campo no puede estar vacío",
+              pattern: {
+                value: /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/,
+                message: "Solo se permiten letras y espacios",
+              },
+            })}
           />
           <label className="text-white text-left pl-5">
-            <p className="text-sm  font-nunito-regular">
+            <p className="text-sm font-nunito-regular">
               *Ej: Ing. en Sistemas ó rol en tu empresa
             </p>
+          </label>
+          <label className="text-white text-left pl-5">
+            {errors.career && (
+              <span className="text-red-500">{errors.career.message}</span>
+            )}
           </label>
         </div>
         <div className="flex w-full justify-end items-end">
@@ -189,7 +215,11 @@ const Step3 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep4> }) => {
 };
 
 const Step4 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep3> }) => {
-  const { register, handleSubmit } = useForm<FormValuesStep3>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValuesStep3>();
 
   return (
     <div className="relative">
@@ -198,35 +228,24 @@ const Step4 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep3> }) => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <TypewriterEffect words={wordsStep3} />
-        <div className="flex  w-full items-center justify-center">
-          <select
-            className="m-4 w-full bg-black text-white text-2xl p-4 rounded border border-gray-300"
-            {...register("university", { required: true })}
-            defaultValue=""
-          >
-            <option value="" disabled hidden>
-              Seleccione
-            </option>
-            <option className="p-4" value="utn">
-              UTN
-            </option>
-            <option className="p-4" value="otro">
-              Otro
-            </option>
-          </select>
-          <div className="pointer-events-none flex items-center px-2 text-white">
-            <svg
-              className="fill-current h-8 w-8"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10 12l-5-5 1.5-1.5L10 9l3.5-3.5L15 7l-5 5z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </div>
+        <div className="flex flex-col  w-full items-center justify-center">
+          <input
+            className="m-4 bg-black text-white text-4xl p-2 rounded border border-gray-300 w-full"
+            {...register("university", {
+              required: true,
+              validate: (value) =>
+                value.trim().length > 0 || "El campo no puede estar vacío",
+              pattern: {
+                value: /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/,
+                message: "Solo se permiten letras y espacios",
+              },
+            })}
+          />
+          <label className="text-white text-left pl-5">
+            {errors.university && (
+              <span className="text-red-500">{errors.university.message}</span>
+            )}
+          </label>
         </div>
 
         <div className="flex w-full justify-end items-end">
@@ -244,7 +263,11 @@ const Step4 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep3> }) => {
 };
 
 const Step5 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep5> }) => {
-  const { register, handleSubmit } = useForm<FormValuesStep5>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValuesStep5>();
 
   return (
     <div className="relative">
@@ -256,7 +279,7 @@ const Step5 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep5> }) => {
         <div className="flex  w-full items-center justify-center">
           <select
             className="m-4 w-full bg-black text-white text-2xl p-4 rounded border border-gray-300"
-            {...register("meetus", { required: true })}
+            {...register("meetus", { required: "Seleccione una opción" })}
             defaultValue=""
           >
             <option value="" disabled hidden>
@@ -281,7 +304,12 @@ const Step5 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep5> }) => {
               Otro
             </option>
           </select>
-          <div className="pointer-events-none flex items-center px-2 text-white">
+          <label className="text-white text-left pl-5">
+            {errors.meetus && (
+              <span className="text-red-500">{errors.meetus.message}</span>
+            )}
+          </label>
+          <div className="pointer-events-none absolute right-12 top-1/2 transform -translate-y-1/2 text-white">
             <svg
               className="fill-current h-8 w-8"
               xmlns="http://www.w3.org/2000/svg"
@@ -311,7 +339,11 @@ const Step5 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep5> }) => {
 };
 
 const Step6 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep6> }) => {
-  const { register, handleSubmit } = useForm<FormValuesStep6>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValuesStep6>();
 
   return (
     <div className="relative">
@@ -320,10 +352,10 @@ const Step6 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep6> }) => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <TypewriterEffect words={wordsStep5} />
-        <div className="flex  w-full items-center justify-center">
+        <div className="flex w-full items-center justify-center relative">
           <select
-            className="m-4 w-full bg-black text-white text-2xl p-4 rounded border border-gray-300"
-            {...register("transport", { required: true })}
+            className="m-4 w-full bg-black text-white text-2xl p-4 rounded border border-gray-300 appearance-none"
+            {...register("transport", { required: "Seleccione una opción" })}
             defaultValue=""
           >
             <option value="" disabled hidden>
@@ -354,7 +386,7 @@ const Step6 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep6> }) => {
               ✈️ Avión
             </option>
           </select>
-          <div className="pointer-events-none flex items-center px-2 text-white">
+          <div className="pointer-events-none absolute right-12 top-1/2 transform -translate-y-1/2 text-white">
             <svg
               className="fill-current h-8 w-8"
               xmlns="http://www.w3.org/2000/svg"
@@ -367,6 +399,11 @@ const Step6 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep6> }) => {
               />
             </svg>
           </div>
+          <label className="text-white text-left pl-5">
+            {errors.transport && (
+              <span className="text-red-500">{errors.transport.message}</span>
+            )}
+          </label>
         </div>
 
         <div className="flex w-full justify-end items-end">
@@ -384,10 +421,14 @@ const Step6 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep6> }) => {
 };
 
 const Step7 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep7> }) => {
-  const { register, handleSubmit } = useForm<FormValuesStep7>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValuesStep7>();
 
   return (
-    <div className="relative">
+    <div className="relative w-full h-screen flex items-center justify-center">
       <form
         className="flex flex-col justify-center items-center"
         onSubmit={handleSubmit(onSubmit)}
@@ -397,12 +438,20 @@ const Step7 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep7> }) => {
           <input
             type="number"
             className="m-4 bg-black text-white text-4xl p-2 rounded border border-gray-300 w-full"
-            {...register("kilometers", { required: true })}
+            {...register("kilometers", {
+              required: "Este campo es obligatorio",
+              validate: (value) => value > 1 || "El valor debe ser mayor a 1",
+            })}
           />
           <label className="text-white text-left pl-5">
             <p className="text-sm  font-nunito-regular">
               *Ej: 10km, 20km, 30km
             </p>
+          </label>
+          <label className="text-white text-left pl-5">
+            {errors.kilometers && (
+              <span className="text-red-500">{errors.kilometers.message}</span>
+            )}
           </label>
         </div>
 
@@ -518,7 +567,9 @@ const Form = () => {
       </DotBackground>
 
       <div className="absolute bottom-20 left-0 right-0 flex justify-center items-center">
-        <img src={Logo} alt="Logo" className="w-60 " />
+        <a href="https://piconsulting.com.ar/">
+          <img src={Logo} alt="Logo" className="w-60 " />
+        </a>
       </div>
     </div>
   );

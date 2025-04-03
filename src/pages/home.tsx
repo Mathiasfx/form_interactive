@@ -10,12 +10,12 @@ const home = () => {
   return (
     <>
       <div className="w-full min-h-screen relative flex flex-col items-center justify-center flex-1 antialiased  bg-neutral-950 ">
-        <img src={Mundo} alt="mundo datazon" className="my-4" width={100} />
+        <img src={Mundo} alt="mundo datazon" className="my-4 w-32 " />
         <p className="text-gray text-sm  sm:text-1xl md:text-xl text-center mb-10  text-stone-100 font-nunito-bold relative z-10">
           ¡El camino al mundo de los Datos comienza acá!
         </p>
         <TypewriterEffect className="mb-3" words={wordHome} />
-        <img src={Datazon} alt="Datazon" width={400} className="my-4" />
+        <img src={Datazon} alt="Datazon" className="my-4 w-64 sm:w-96" />
 
         <p className="text-1xl sm:text-2xl md:text-3xl lg:text-3xl text-center mb-4 mt-4 font-semibold text-stone-100 font-nunito-bold">
           8 de Mayo - 14:00hs Auditorio UTN
@@ -28,11 +28,13 @@ const home = () => {
           </Link>
         </div>
 
-        <div className="flex justify-center items-center h-20">
-          <img src={Logo} alt="Logo" className="w-60 h-20" />
+        <div className="flex justify-center items-center h-20 relative z-10">
+          <a href="https://piconsulting.com.ar/">
+            <img src={Logo} alt="Logo" className="w-60 h-20" />
+          </a>
         </div>
         <p style={{ color: "gray", fontSize: "11px" }}>
-          <small>Version : 1.1.4</small>
+          <small>Version : 1.1.6</small>
         </p>
       </div>
       <BackgroundBeams className="absolute " />

@@ -30,7 +30,7 @@ const Step1 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep1> }) => {
   } = useForm<FormValuesStep1>();
 
   return (
-    <div className="relative">
+    <div className="relative h-screen w-full flex justify-center items-center">
       <form
         className="flex flex-col justify-center items-center "
         onSubmit={handleSubmit(onSubmit)}
@@ -40,19 +40,32 @@ const Step1 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep1> }) => {
           <input
             className="m-4  bg-black text-white text-lg p-2 rounded border border-gray-300 border-opacity-35"
             {...register("name", {
-              required: true,
-              minLength: 3,
-              maxLength: 50,
+              required: "El nombre no puede estar vacío",
+              minLength: {
+                value: 1,
+                message: "El nombre debe tener al menos 1 carácter",
+              },
+              maxLength: {
+                value: 50,
+                message: "El nombre no puede tener más de 50 caracteres",
+              },
               pattern: {
-                value: /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/,
+                value: /^[A-Za-zÁÉÍÓÚáéíóúÑñ]+(?:\s[A-Za-zÁÉÍÓÚáéíóúÑñ]+)*\s*$/,
                 message: "Solo se permiten letras y espacios",
               },
+              validate: (value) =>
+                value.trim().length > 0 || "El nombre no puede estar vacío",
             })}
           />
           <label className="text-white text-left pl-5">
             <p className="text-sm  font-nunito-regular">
               *Lo necesitamos para inscribirte al evento
             </p>
+          </label>
+          <label className="text-white text-left pl-5">
+            {errors.name && (
+              <span className="text-red-500">{errors.name.message}</span>
+            )}
           </label>
         </div>
         <div className="flex w-full justify-end items-end">
@@ -65,11 +78,6 @@ const Step1 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep1> }) => {
           </button>
         </div>
       </form>
-      <label className="text-white text-left pl-5">
-        {errors.name && (
-          <span className="text-red-500">{errors.name.message}</span>
-        )}
-      </label>
     </div>
   );
 };
@@ -140,12 +148,20 @@ const Step3 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep3> }) => {
               required: true,
               minLength: 3,
               maxLength: 50,
+              validate: (value) =>
+                value.trim().length > 0 ||
+                "El nombre de la universidad no puede contener solo espacios",
               pattern: {
                 value: /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/,
                 message: "Solo se permiten letras y espacios",
               },
             })}
           />
+          <label className="text-white text-left pl-5">
+            {errors.university && (
+              <span className="text-red-500">{errors.university.message}</span>
+            )}
+          </label>
         </div>
         <div className="flex w-full justify-end items-end">
           <button
@@ -157,11 +173,6 @@ const Step3 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep3> }) => {
           </button>
         </div>
       </form>
-      <label className="text-white text-left pl-5">
-        {errors.university && (
-          <span className="text-red-500">{errors.university.message}</span>
-        )}
-      </label>
     </div>
   );
 };
@@ -197,7 +208,7 @@ const RegisAndAcredit = () => {
       await sendFormAndAcredit(DataForm);
       navigate("/thanks");
     } catch (err: any) {
-      console.error(err.response.data.error);
+      console.error(err);
       toast.error(err.response.data.error.toString());
     } finally {
       setIsLoading(false);
@@ -209,7 +220,7 @@ const RegisAndAcredit = () => {
       <img
         src={Datazon}
         alt="logo"
-        width={250}
+        width={230}
         className="absolute z-10 top-20"
       />
       <DotBackground>
@@ -239,8 +250,10 @@ const RegisAndAcredit = () => {
         </div>
       </DotBackground>
 
-      <div className="absolute bottom-20 left-0 right-0 flex justify-center items-center">
-        <img src={Logo} alt="Logo" className="w-60 " />
+      <div className="absolute bottom-20 left-0 right-0 flex justify-center items-center z-20">
+        <a href="https://piconsulting.com.ar/">
+          <img src={Logo} alt="Logo" className="w-60 " />
+        </a>
       </div>
     </div>
   );

@@ -15,7 +15,7 @@ const Welcome = () => {
   return (
     <div className="bg-black min-h-screen flex justify-center items-center flex-col relative ">
       <DotBackground>
-        <img src={Mundo} alt="Mundo" className="w-55 absolute top-40" />
+        <img src={Mundo} alt="Mundo" className="w-44 sm:w-48 absolute top-40" />
         <p className="text-4xl dark:text-white text-stone-200 sm:text-5xl font-bold relative z-20  py-8 text-center">
           Bienvenido {nameStored} a{" "}
           <img
@@ -27,7 +27,9 @@ const Welcome = () => {
           !
         </p>
         <div className="absolute bottom-20 left-0 right-0 flex justify-center items-center h-20">
-          <img src={Logo} alt="Logo" className="w-60" />
+          <a href="https://piconsulting.com.ar/">
+            <img src={Logo} alt="Logo" className="w-60" />
+          </a>
         </div>
       </DotBackground>
     </div>

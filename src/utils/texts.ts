@@ -81,7 +81,8 @@ export const wordsStep6: Typewriter[] = [
   { text: "asistir" },
   { text: "al" },
   { text: "evento?", className: "text-yellow-500" },
-  {text:"(solo  ida)"}
+  {text:" (solo"},
+  {text:" ida)"},
 
 ]
 
