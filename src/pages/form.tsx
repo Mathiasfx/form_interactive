@@ -518,12 +518,13 @@ const Form = () => {
 
     try {
       await sendForm(DataForm);
-      navigate("/thanks");
-    } catch (err: any) {
-      console.error(err.response.data.error);
-      toast.error(err.response.data.error.toString());
-    } finally {
       setIsLoading(false);
+      navigate("/thanks");
+      toast.success("Formulario enviado con éxito");
+    } catch (err: any) {
+      setIsLoading(false);
+      toast.error("Error al enviar el formulario - intente nuevamente");
+      console.error(err.response.error);
     }
   };
 
@@ -538,7 +539,7 @@ const Form = () => {
       <DotBackground>
         <div className="flex w-80 sm:w-full md:w-80 lg:w-1/2 flex-col items-center">
           {isLoading ? (
-            <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50 z-50">
+            <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50 z-10">
               <div className="animate-spin rounded-full h-20 w-20 border-t-2 border-b-2 border-gray-100"></div>
             </div>
           ) : (
@@ -552,17 +553,6 @@ const Form = () => {
               {currentStep === 7 && <Step7 onSubmit={handleStepSubmit} />}
             </>
           )}
-          <ToastContainer
-            position="bottom-center"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-          />
         </div>
       </DotBackground>
 
@@ -571,6 +561,18 @@ const Form = () => {
           <img src={Logo} alt="Logo" className="w-60 " />
         </a>
       </div>
+      <ToastContainer
+        className="z-[9999]"
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={true}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 };
