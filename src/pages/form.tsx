@@ -184,7 +184,7 @@ const Step3 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep4> }) => {
               validate: (value) =>
                 value.trim().length > 0 || "El campo no puede estar vacío",
               pattern: {
-                value: /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/,
+                value: /^[A-Za-zÁÉÍÓÚáéíóúÑñ.\s]+$/,
                 message: "Solo se permiten letras y espacios",
               },
             })}
@@ -443,11 +443,11 @@ const Step7 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep7> }) => {
               validate: (value) => value > 1 || "El valor debe ser mayor a 1",
             })}
           />
-          <label className="text-white text-left pl-5">
+          {/* <label className="text-white text-left pl-5">
             <p className="text-sm  font-nunito-regular">
               *Ej: 10km, 20km, 30km
             </p>
-          </label>
+          </label> */}
           <label className="text-white text-left pl-5">
             {errors.kilometers && (
               <span className="text-red-500">{errors.kilometers.message}</span>

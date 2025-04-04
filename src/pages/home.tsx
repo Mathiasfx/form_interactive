@@ -18,7 +18,7 @@ const home = () => {
         <img src={Datazon} alt="Datazon" className="my-4 w-64 sm:w-96" />
 
         <p className="text-1xl sm:text-2xl md:text-3xl lg:text-3xl text-center mb-4 mt-4 font-semibold text-stone-100 font-nunito-bold">
-          8 de Mayo - 14:00hs Auditorio UTN
+          8 de Mayo - 13:15hs Auditorio UTN
         </p>
         <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 space-x-0 md:space-x-4 mt-10 mb-4 relative z-10">
           <Link to="register">
