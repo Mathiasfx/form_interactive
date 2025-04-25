@@ -11,7 +11,7 @@ const sendForm = async (data: FormDatazon) => {
 
     return response.data;
   } catch (error) {
-    console.error("Error al enviar los datos:", error);
+    console.error("Error al enviar los datos:");
     throw error;
   }
 };

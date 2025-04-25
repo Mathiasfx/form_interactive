@@ -133,9 +133,7 @@ const Step2 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep2> }) => {
             {...register("email", {
               required: true,
               pattern: {
-                value:
-                  /^\w+(\.\w+)*@[a-zA-Z_]+\.[a-zA-Z]{2,3}(\.[a-zA-Z]{2,3})?$/,
-                // value: /^\w+@[a-zA-Z_]+\.[a-zA-Z]{2,3}$/,
+                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
                 message: "Ingrese un correo electrónico válido",
               },
             })}
@@ -236,8 +234,8 @@ const Step4 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep3> }) => {
               validate: (value) =>
                 value.trim().length > 0 || "El campo no puede estar vacío",
               pattern: {
-                value: /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/,
-                message: "Solo se permiten letras y espacios",
+                value: /^[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\s]+$/,
+                message: "Solo se permiten letras, números y espacios",
               },
             })}
           />
@@ -523,8 +521,16 @@ const Form = () => {
       toast.success("Formulario enviado con éxito");
     } catch (err: any) {
       setIsLoading(false);
-      toast.error("Error al enviar el formulario - intente nuevamente");
-      console.error(err.response.error);
+      const errorMessage = err.response?.data?.detail || "Error desconocido";
+      if (errorMessage.includes("The user is already registered")) {
+        toast.error("El usuario ya estás registrado");
+      } else if (errorMessage.includes("Invalid email")) {
+        toast.error("El correo electrónico no es válido");
+      } else if (errorMessage.includes("Invalid data")) {
+        toast.error("Los datos son inválidos");
+      } else {
+        toast.error(`Error al enviar el formulario: ${errorMessage}`);
+      }
     }
   };
 

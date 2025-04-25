@@ -44,7 +44,7 @@ const Acredit = () => {
       if (err.response.status === 404) {
         navigate("/register");
       }
-      toast.error(err.response.data.error.toString());
+      toast.error(err.response?.data?.detail.toString() || "Error desconocido");
     } finally {
       setIsLoading(false);
     }
