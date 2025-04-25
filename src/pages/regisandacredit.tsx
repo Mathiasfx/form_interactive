@@ -38,6 +38,7 @@ const Step1 = ({ onSubmit }: { onSubmit: SubmitHandler<FormValuesStep1> }) => {
         <TypewriterEffect words={wordsStep1} />
         <div className="flex flex-col w-full ">
           <input
+            autoComplete="off"
             className="m-4  bg-black text-white text-lg p-2 rounded border border-gray-300 border-opacity-35"
             {...register("name", {
               required: "El nombre no puede estar vacío",
