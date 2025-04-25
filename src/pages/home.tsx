@@ -34,7 +34,7 @@ const home = () => {
           </a>
         </div>
         <p style={{ color: "gray", fontSize: "11px" }}>
-          <small>Version : 1.1.7</small>
+          <small>Version : 1.1.8</small>
         </p>
       </div>
       <BackgroundBeams className="absolute " />
